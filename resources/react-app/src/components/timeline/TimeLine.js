@@ -4,10 +4,13 @@ import {
     VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { useTranslation } from "react-i18next";
 
 function TimeLine() {
     const [isVisible, setIsVisible] = useState(false);
-    const aboutRef = useRef(null);
+    const { t, i18n } = useTranslation();
+
+    const timeRef = useRef(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
         const handleResize = () => {
@@ -27,23 +30,23 @@ function TimeLine() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.5 }
+            { threshold: 0 }
         );
-        if (aboutRef.current) {
-            observer.observe(aboutRef.current);
+        if (timeRef.current) {
+            observer.observe(timeRef.current);
         }
         return () => {
             observer.disconnect();
         };
     }, []);
     return (
-        <div className={`container mx-auto mt-10 `} ref={aboutRef}>
+        <div className={`container mx-auto mt-10 `} ref={timeRef}>
             <div className="w-full">
                 <VerticalTimeline>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
                         iconStyle={{
-                            background: "#eb8f3a",
+                            background: "#eb8f30",
                             color: "#fff",
                         }}
                         icon={
@@ -63,22 +66,19 @@ function TimeLine() {
                         }
                     >
                         <h3 className="vertical-timeline-element-title text-gray-700 font-bold text-2xl px-2">
-                            2021
+                            2014
                         </h3>
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            ENTEGRE TESİS YÖNETİMİ
+                        <h4 className="vertical-timeline-element-subtitle bg-[#eb8f30] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline1")}
                         </h4>
                         <ul className="list-disc pl-5 mt-5">
-                            <li>
-                                Ankara Bilkent Şehir Hastanesi Mersin Şehir
-                                Hastanesi
-                            </li>
+                            <li>{t("timeline2")}</li>
                         </ul>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
                         iconStyle={{
-                            background: "#eb8f3a",
+                            background: "#eb8f30",
                             color: "#fff",
                         }}
                         icon={
@@ -98,15 +98,13 @@ function TimeLine() {
                         }
                     >
                         <h3 className="vertical-timeline-element-title text-gray-700 font-bold text-2xl px-2">
-                            2022
+                            2019
                         </h3>
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            YENİLENEBİLİR ENERJİ PROJELERİ
+                        <h4 className="vertical-timeline-element-subtitle bg-[#eb8f30] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline3")}
                         </h4>
                         <ul className="list-disc pl-5 mt-5">
-                            <li>TED İzmir Koleji</li>
-                            <li>TED Kocaeli Koleji</li>
-                            <li>IC Hotels Antalya</li>
+                            <li>{t("timeline4")}</li>
                         </ul>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -132,17 +130,14 @@ function TimeLine() {
                         }
                     >
                         <h3 className="vertical-timeline-element-title text-gray-700 font-bold text-2xl px-2">
-                            2023
+                            2021
                         </h3>
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            KAMU BİNALARINDA ENERJİ VERİMLİLİĞİ PROJESİ -
-                            ANTALYA
+                        <h4 className="vertical-timeline-element-subtitle bg-[#eb8f30] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline5")}
                         </h4>
 
                         <ol className="list-disc pl-5 mt-5">
-                            <li>Antalya Eğitim ve Araştırma Hastanesi</li>
-                            <li>Elmalı Hastanesi</li>
-                            <li> Alanya Eğitim ve Araştırma Hastanesi</li>
+                            <li>{t("timeline6")}</li>
                         </ol>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -170,16 +165,111 @@ function TimeLine() {
                         <h3 className="vertical-timeline-element-title text-gray-700 font-bold text-2xl px-2">
                             2023
                         </h3>
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            KAMU BİNALARINDA ENERJİ VERİMLİLİĞİ PROJESİ -
-                            DENİZLİ
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline7")}
                         </h4>
 
                         <ol className="list-disc pl-5 mt-5">
-                            <li>Pamukkale Üniversitesi (nZEB)</li>
-                            <li>19 Bina</li>
+                            <li>{t("timeline8")}</li>
+                            <li>{t("timeline9")}</li>
+                            <li>{t("timeline10")}</li>
                         </ol>
                     </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--education"
+                        iconStyle={{
+                            background: "#1b477a",
+                            color: "#fff",
+                        }}
+                        icon={
+                            <p
+                                style={{
+                                    transform: "rotate(-180deg)",
+                                    writingMode: "vertical-rl",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            >
+                                T-EEN TECHNIC
+                            </p>
+                        }
+                    >
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline11")}
+                        </h4>
+
+                        <ol className="list-disc pl-5 mt-5">
+                            <li>{t("timeline12")}</li>
+                            <li>{t("timeline13")}</li>
+                        </ol>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--education"
+                        iconStyle={{
+                            background: "#1b477a",
+                            color: "#fff",
+                        }}
+                        icon={
+                            <p
+                                style={{
+                                    transform: "rotate(-180deg)",
+                                    writingMode: "vertical-rl",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            >
+                                T-EEN TECHNIC
+                            </p>
+                        }
+                    >
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline14")}
+                        </h4>
+
+                        <ol className="list-disc pl-5 mt-5">
+                            <li>{t("timeline15")}</li>
+                            <li>{t("timeline16")}</li>
+                        </ol>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--education"
+                        iconStyle={{
+                            background: "#1b477a",
+                            color: "#fff",
+                        }}
+                        icon={
+                            <p
+                                style={{
+                                    transform: "rotate(-180deg)",
+                                    writingMode: "vertical-rl",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            >
+                                T-EEN TECHNIC
+                            </p>
+                        }
+                    >
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline17")}
+                        </h4>
+
+                        <ol className="list-disc pl-5 mt-5">
+                            <li>{t("timeline18")}</li>
+                            <li>{t("timeline19")}</li>
+                            <li>{t("timeline20")}</li>
+                        </ol>
+                    </VerticalTimelineElement>
+
                     <VerticalTimelineElement
                         className="vertical-timeline-element--education"
                         iconStyle={{
@@ -205,13 +295,14 @@ function TimeLine() {
                         <h3 className="vertical-timeline-element-title text-gray-700 font-bold text-2xl px-2">
                             2024
                         </h3>
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            KAMU BİNALARINDA ENERJİ VERİMLİLİĞİ PROJESİ - ALANYA
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline21")}
                         </h4>
 
                         <ol className="list-disc pl-5 mt-5">
-                            <li>Alanya Adliyesi</li>
-                            <li>Gazipaşa Hastanesi</li>
+                            <li>{t("timeline22")}</li>
+                            <li>{t("timeline23")}</li>
+                            <li>{t("timeline24")}</li>
                         </ol>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -236,52 +327,12 @@ function TimeLine() {
                             </p>
                         }
                     >
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            KAMU BİNALARINDA ENERJİ VERİMLİLİĞİ PROJESİ -
-                            SAKARYA, BURSA, KARABÜK
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline25")}
                         </h4>
-
                         <ol className="list-disc pl-5 mt-5">
-                            <li>
-                                Sakarya Eğitim ve Araştırma Hastanesi Korucuk
-                                Kampüsü
-                            </li>
-                            <li>
-                                Bursa Atatürk Mesleki ve Teknik Anadolu Lisesi
-                                Karabük Valiliği
-                            </li>
-                        </ol>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                        className="vertical-timeline-element--education"
-                        iconStyle={{
-                            background: "#1b477a",
-                            color: "#fff",
-                        }}
-                        icon={
-                            <p
-                                style={{
-                                    transform: "rotate(-180deg)",
-                                    writingMode: "vertical-rl",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    width: "100%",
-                                    height: "100%",
-                                }}
-                            >
-                                T-EEN TECHNIC
-                            </p>
-                        }
-                    >
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            ELEKTRİKLİ ARAÇ ŞARJ İSTASYON YATIRIMLARI
-                        </h4>
-
-                        <ol className="list-disc pl-5 mt-5">
-                            <li>Ankara Bilkent Şehir Hastanesi</li>
-                            <li>IC Otelleri Antalya</li>
-                            <li>T.C. Sağlık Bakanlığı</li>
+                            <li>{t("timeline26")}</li>
+                            <li>{t("timeline27")}</li>
                         </ol>
                     </VerticalTimelineElement>
 
@@ -307,14 +358,9 @@ function TimeLine() {
                             </p>
                         }
                     >
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            ENERJİ VERİMLİLİĞİ KAMU BİNALARI PROJELERİ
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline28")}
                         </h4>
-
-                        <ol className="list-disc pl-5 mt-5">
-                            <li>Türkiye Projeleri</li>
-                            <li>Avrupa Projeleri</li>
-                        </ol>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--education"
@@ -338,36 +384,8 @@ function TimeLine() {
                             </p>
                         }
                     >
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            KENTSEL VE ENERJİ VERİMLİLİĞİ İÇİN BÜTÜNSEL ÇÖZÜMLER
-                        </h4>
-                    </VerticalTimelineElement>
-
-                    <VerticalTimelineElement
-                        className="vertical-timeline-element--education"
-                        iconStyle={{
-                            background: "#1b477a",
-                            color: "#fff",
-                        }}
-                        icon={
-                            <p
-                                style={{
-                                    transform: "rotate(-180deg)",
-                                    writingMode: "vertical-rl",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    width: "100%",
-                                    height: "100%",
-                                }}
-                            >
-                                T-EEN TECHNIC
-                            </p>
-                        }
-                    >
-                        <h4 className="vertical-timeline-element-subtitle bg-[#7fc9d2] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
-                            YENİLENEBİLİR ENERJİ UYGULAMALARI İÇİN TEKNOLOJİK
-                            ÇÖZÜMLER
+                        <h4 className="vertical-timeline-element-subtitle bg-gradient-to-r from-[#4787b4] to-[#629d7f] text-white text-2xl varela-round-bold px-2 py-6 rounded-tl-xl rounded-tr-xl">
+                            {t("timeline29")}
                         </h4>
                     </VerticalTimelineElement>
                 </VerticalTimeline>

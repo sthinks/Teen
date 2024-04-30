@@ -10,6 +10,7 @@ import Contact from "../../components/contact/Contact";
 import Footer from "../../components/footer/Footer";
 import ContantInfo from "../../components/contact/ContantInfo";
 import TimeLine from "../../components/timeline/TimeLine";
+import Schema from "../../components/schema/Schema";
 
 function Home() {
     const { ref } = useParallax({ speed: 0 });
@@ -35,7 +36,7 @@ function Home() {
             <TimeLine isMobile={isMobile} />
             <SolutionsPartner isMobile={isMobile} />
             <Solutions isMobile={isMobile} />
-            {/* <Productivity /> */}
+            <Productivity />
             <Project isMobile={isMobile} />
             <Contact isMobile={isMobile} />
             <ContantInfo isMobile={isMobile} />

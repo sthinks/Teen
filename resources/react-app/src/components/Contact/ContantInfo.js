@@ -27,7 +27,7 @@ function ContantInfo() {
                                 <IoMail className="text-4xl text-white" />
                             </div>
                             <p className="varela-round-med">
-                                info@TeenTechnic.com
+                                info@teentechnic.com
                             </p>
                         </div>
                     </a>

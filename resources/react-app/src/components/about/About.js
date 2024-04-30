@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import aboutImage from "../../assets/about/about-image.jpg";
 import infoaboutimage from "../../assets/about/infoaboutimage.png";
+import engbanner from "../../assets/about/engbanner.png";
+import trbanner from "../../assets/about/trbanner.png";
+
 import ReactPlayer from "react-player";
-function About({ isMobile }) {
+import { useTranslation } from "react-i18next";
+
+function About() {
     const controls = useAnimation();
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         controls.start({ opacity: 1, x: 0 });
@@ -44,7 +49,7 @@ function About({ isMobile }) {
                 transition={{ duration: 1 }}
             >
                 <p className="text-5xl text-[#0c8ecf] font-bold varela-round-bold">
-                    Hakkımızda
+                    {t("navsolutionabout")}
                 </p>
             </motion.div>
             <div
@@ -68,36 +73,27 @@ function About({ isMobile }) {
 
                 <div className="w-2/4 max-lg:w-full max-lg:mt-10">
                     <p className="varela-round-bold text-2xl text-gray-700 pb-4">
-                        Daha İyi Bir Gelecek için Sürdürülebilir Çözümler
+                        {t("abouttitle")}
                     </p>
                     <br />
                     <p className="varela-round-med  text-lg text-gray-700">
-                        T-EEN TECHNIC, sürdürülebilirlik odaklı enerji
-                        verimliliği projeleriyle paydaşlarına değer katıyor.
-                        Yenilikçi çözümlerle yenilenebilir enerji, enerji
-                        verimliliği, danışmanlık ve uygulama hizmetleri sunuyor.
-                        Akıllı bina teknolojileri ve dijital çözümlerle
-                        sürdürülebilir uygulamaların hayata geçirilmesini
-                        sağlarken, ayrıca operasyonel verimliliği artırmak için
-                        ekipmanları sürdürülebilir alternatiflerle değiştiriyor
-                        ve elektrikli araç şarj çözümleri gibi son teknoloji
-                        ürünlerini stratejik ortaklıklarla sunuyor.
-                    </p>
-                    <br />
-                    <p className="varela-round-med  text-lg text-gray-700">
-                        Kurulduğu günden itibaren 59,000 hane halkının yıllık
-                        elektrik tüketim ihtiyaçlarına eşdeğer tasarruf sağlayan
-                        T-EEN TECHNIC, gerçekleştirdiği projelerle ve sunduğu
-                        çözümlerle Türkiye'nin 2053 yılı net sıfır emisyon
-                        hedefine katkıda bulunuyor.
+                        {t("aboutcontent1")}
                     </p>
                 </div>
             </div>
-            <img
-                className="w-full h-full mt-10"
-                src={infoaboutimage}
-                alt="Teen Technic"
-            />
+            {i18n.language === "tr" ? (
+                <img
+                    className="w-full h-full mt-10"
+                    src={trbanner}
+                    alt="Teen Technic"
+                />
+            ) : (
+                <img
+                    className="w-full h-full mt-10"
+                    src={engbanner}
+                    alt="Teen Technic"
+                />
+            )}
         </div>
     );
 }

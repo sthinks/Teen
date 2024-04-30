@@ -6,8 +6,7 @@ import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import teenlogo from "../../assets/logo/whiteteen.png";
 import teenlogoblack from "../../assets/logo/teenlogo.png";
 import { FaYoutube } from "react-icons/fa";
-import { Link, animateScroll as scroll } from "react-scroll";
-import ScrollIntoView from "react-scroll-into-view";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Header() {
     const [navItem, setNavItem] = useState(" ");
@@ -28,11 +27,11 @@ export default function Header() {
         }
     };
     const navigation = [
-        { name: "Hakkımızda", href: "about" },
-        { name: "Çözüm Ortakları", href: "solutionspartner" },
-        { name: "Çözümler", href: "solutions" },
-        { name: "Projeler", href: "project" },
-        { name: "İletişim", href: "contact" },
+        { name: t("navsolutionabout"), href: "about" },
+        { name: t("navsolutionpartner"), href: "solutionspartner" },
+        { name: t("navsolution"), href: "solutions" },
+        { name: t("navproje"), href: "project" },
+        { name: t("test"), href: "contact" },
     ];
     const navigate = useNavigate();
     const changeBackground = () => {
@@ -95,7 +94,7 @@ export default function Header() {
                             <div className="flex items-center justify-center sm:items-stretch sm:justify-around text-[#191919] font-semibold w-full mt-3">
                                 <div className="hidden max-sm:ml-6 md:block w-full max-xl:w-full">
                                     <div className="flex justify-between items-center max-xl:text-sm ">
-                                        <div className="max-w-3xl max-xl:max-w-2xl flex justify-center items-center">
+                                        <div className="max-w-4xl max-xl:max-w-3xl flex justify-center items-center">
                                             <div className="flex w-[300px] max-lg:w-[200px] ">
                                                 <a href="/">
                                                     <img
@@ -144,23 +143,116 @@ export default function Header() {
                                         <div className=" max-w-xs flex justify-center items-center gap-2 relative   text-[#535353] text-base font-light max-xl:pr-4 mt-8">
                                             <div className="flex justify-between items-center max-xl:hidden pl-2 gap-3">
                                                 <a
-                                                    href="https://www.linkedin.com/company/teentechnic"
+                                                    href={
+                                                        i18n.language === "tr"
+                                                            ? "https://www.teentechnic.com/trsema.png"
+                                                            : "https://www.teentechnic.com/engtema.png"
+                                                    }
+                                                    target="blank"
+                                                    className={` text-base  font-medium text-with-underline cursor-pointer mr-2 text-with-underline   ${
+                                                        navbar
+                                                            ? "text-[#535353] text-with-underline2"
+                                                            : "text-white"
+                                                    }`}
+                                                >
+                                                    {t("katalog")}
+                                                </a>
+                                                <p
+                                                    className={`${
+                                                        i18n.language === "en"
+                                                            ? `cursor-pointer font-bold underline  ${
+                                                                  navbar
+                                                                      ? "text-[#535353]"
+                                                                      : "text-white"
+                                                              }`
+                                                            : `cursor-pointer hover:scale-105  ${
+                                                                  navbar
+                                                                      ? "text-[#535353]"
+                                                                      : "text-white"
+                                                              } duration-200 delay-200 hover:opacity-50`
+                                                    }`}
+                                                    onClick={() =>
+                                                        changeLanguage("en")
+                                                    }
+                                                >
+                                                    ENG
+                                                </p>
+                                                <span
+                                                    className={`cursor-pointer font-bold   ${
+                                                        navbar
+                                                            ? "text-[#535353]"
+                                                            : "text-white"
+                                                    }`}
+                                                >
+                                                    /
+                                                </span>
+                                                <p
+                                                    className={`${
+                                                        i18n.language === "tr"
+                                                            ? `cursor-pointer font-bold underline  ${
+                                                                  navbar
+                                                                      ? "text-[#535353]"
+                                                                      : "text-white"
+                                                              }`
+                                                            : `cursor-pointer hover:scale-105  ${
+                                                                  navbar
+                                                                      ? "text-[#535353]"
+                                                                      : "text-white"
+                                                              } duration-200 delay-200 hover:opacity-50`
+                                                    }`}
+                                                    onClick={() =>
+                                                        changeLanguage("tr")
+                                                    }
+                                                >
+                                                    TR
+                                                </p>
+                                                <a
+                                                    href="https://www.linkedin.com/company/t-een-technic"
                                                     target="blank"
                                                 >
-                                                    <FaLinkedin className="text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer  text-white" />
+                                                    <FaLinkedin
+                                                        className={`text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer ${
+                                                            !navbar
+                                                                ? "text-white"
+                                                                : "text-black"
+                                                        } `}
+                                                    />
                                                 </a>
-
                                                 <a
                                                     href="https://www.instagram.com/teentechnic/"
                                                     target="blank"
                                                 >
-                                                    <FaInstagram className="text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer  text-white" />
+                                                    <FaInstagram
+                                                        className={`text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer ${
+                                                            !navbar
+                                                                ? "text-white"
+                                                                : "text-black"
+                                                        } `}
+                                                    />
                                                 </a>
                                                 <a
-                                                    href="https://www.youtube.com/@teentechnic"
+                                                    href="https://www.youtube.com/@TeenTechnic"
                                                     target="blank"
                                                 >
-                                                    <FaYoutube className="text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer  text-white" />
+                                                    <FaYoutube
+                                                        className={`text-3xl hover:scale-110 duration-150 delay-150 cursor-pointer ${
+                                                            !navbar
+                                                                ? "text-white"
+                                                                : "text-black"
+                                                        } `}
+                                                    />
+                                                </a>
+                                                <a
+                                                    href="https://twitter.com/TeenTechnic"
+                                                    target="blank"
+                                                >
+                                                    <FaXTwitter
+                                                        className={`text-2xl hover:scale-110 duration-150 delay-150 cursor-pointer ${
+                                                            !navbar
+                                                                ? "text-white"
+                                                                : "text-black"
+                                                        } `}
+                                                    />
                                                 </a>
                                             </div>
                                         </div>
@@ -180,7 +272,6 @@ export default function Header() {
                                 <Disclosure.Button
                                     key={item.name}
                                     as="a"
-                                    href={item.href}
                                     onClick={() => scrollToSolutions(item.href)}
                                     target={item.target ? "_blank" : ""}
                                     className="block px-3 py-2 rounded-md  font-medium"
@@ -188,6 +279,29 @@ export default function Header() {
                                     {item.name}
                                 </Disclosure.Button>
                             ))}
+                            <div className="flex justify-start items-center px-3 py-2 gap-5">
+                                <p
+                                    className={`${
+                                        i18n.language === "en"
+                                            ? "cursor-pointer font-bold "
+                                            : "cursor-pointer hover:scale-105  duration-200 delay-200 hover:opacity-50"
+                                    }`}
+                                    onClick={() => changeLanguage("en")}
+                                >
+                                    ENG
+                                </p>
+                                /
+                                <p
+                                    className={`${
+                                        i18n.language === "tr"
+                                            ? "cursor-pointer font-bold text-black"
+                                            : "cursor-pointer hover:scale-105 duration-200 delay-200 hover:opacity-50"
+                                    }`}
+                                    onClick={() => changeLanguage("tr")}
+                                >
+                                    TR
+                                </p>
+                            </div>
                         </div>
                     </Disclosure.Panel>
                 </>

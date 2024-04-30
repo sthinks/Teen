@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsSend } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useFormik, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import { motion } from "framer-motion";
 import generalService from "../../service/generalService";
-const validationSchema = Yup.object().shape({
-    fullname: Yup.string().required("Ad alanı zorunludur"),
-    subject: Yup.string().required("Konu alanı zorunludur"),
-    mail: Yup.string()
-        .email("Geçerli bir mail adresi giriniz")
-        .required("Mail alanı zorunludur"),
-    message: Yup.string().required("Mesaj alanı zorunludur"),
-    phone: Yup.number(),
-});
 
-const contactForm = () => {
+const Contact = () => {
+    const validationSchema = Yup.object().shape({
+        fullname: Yup.string().required("Ad alanı zorunludur"),
+        subject: Yup.string().required("Konu alanı zorunludur"),
+        mail: Yup.string()
+            .email("Geçerli bir mail adresi giriniz")
+            .required("Mail alanı zorunludur"),
+        message: Yup.string().required("Mesaj alanı zorunludur"),
+        phone: Yup.number(),
+    });
+
     const formik = useFormik({
         initialValues: {
             fullname: "",
@@ -61,16 +62,42 @@ const contactForm = () => {
             progress: undefined,
             theme: "light",
         });
+    const [isVisible, setIsVisible] = useState(false);
+    const contactRef = useRef(null);
+    const { t, i18n } = useTranslation();
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Element görünür hale geldiğinde
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0 } // Elementin yarıdan fazlası göründüğünde
+        );
+
+        if (contactRef.current) {
+            observer.observe(contactRef.current);
+        }
+
+        return () => {
+            // Komponent kaldırıldığında observer'ı temizle
+            observer.disconnect();
+        };
+    }, []);
     return (
         <motion.div
             id="contact"
             className="container mx-auto mt-20 max-lg:px-4"
-            initial={{ opacity: 0, y: -100 }} // Başlangıçta opaklık ve yukarı doğru kayması
-            animate={{ opacity: 1, y: 0 }} // Animasyon sonunda opaklık ve aşağı doğru hareket etmesi
-            transition={{ duration: 1 }} // Geçiş süresi
+            initial={{ opacity: 0, y: -100 }}
+            animate={{
+                opacity: isVisible ? 1 : 0,
+                y: isVisible ? 0 : -100,
+            }}
+            transition={{ duration: 1 }}
         >
-            <div className="flex justify-center w-full mt-5">
+            <div ref={contactRef} className="flex justify-center w-full mt-5">
                 <ToastContainer
                     className="toastContainer z-[9999999]"
                     position="top-right"
@@ -87,7 +114,7 @@ const contactForm = () => {
                 <div className=" bg-white flex flex-col justify-center w-[61rem] max-lg:w-10/12 max-lg:p-12 p-20 max-sm:w-full max-sm:p-4 max-sm:pt-20 max-sm:pb-20 max-sm:ml-2 max-sm:mr-2 shadow-2xl rounded">
                     <div className="flex flex-row justify-between items-center  pb-10">
                         <p className="text-5xl text-[#0c8ecf] font-bold varela-round-bold text-center">
-                            Bizimle iletişime geçin
+                            {t("bizimle")}
                         </p>
                         <BsSend
                             size={56}
@@ -114,7 +141,7 @@ const contactForm = () => {
                                     }`}
                                     id="fullname"
                                     name="fullname"
-                                    placeholder="Ad Soyad"
+                                    placeholder={t("ad")}
                                     type="text"
                                     onChange={formik.handleChange}
                                     value={formik.values.fullname}
@@ -144,7 +171,7 @@ const contactForm = () => {
                                     }`}
                                     id="phone"
                                     name="phone"
-                                    placeholder="Telefon"
+                                    placeholder={t("telefon")}
                                     type="phone"
                                     onChange={formik.handleChange}
                                     value={formik.values.phone}
@@ -158,7 +185,7 @@ const contactForm = () => {
                                     }`}
                                     id="subject"
                                     name="subject"
-                                    placeholder="Konu"
+                                    placeholder={t("konu")}
                                     type="subject"
                                     onChange={formik.handleChange}
                                     value={formik.values.subject}
@@ -174,7 +201,7 @@ const contactForm = () => {
                                     }`}
                                     id="message"
                                     name="message"
-                                    placeholder="Mesaj"
+                                    placeholder={t("mesaj")}
                                     type="message"
                                     onChange={formik.handleChange}
                                     value={formik.values.message}
@@ -185,7 +212,7 @@ const contactForm = () => {
                                     type="submit"
                                     className="bg-[#0c8ecf] hover:bg-[#307192] font-semibold text-sm text-white  h-12 w-36 max-sm:w-48 rounded-full transition duration-300 transform hover:translate-y-1"
                                 >
-                                    Gönder
+                                    {t("gonder")}
                                 </button>
                             </div>
                         </form>
@@ -196,4 +223,4 @@ const contactForm = () => {
     );
 };
 
-export default contactForm;
+export default Contact;

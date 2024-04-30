@@ -8,8 +8,12 @@ import proje from "../../assets/solutions/proje.png";
 import rev from "../../assets/solutions/rev.png";
 import stat from "../../assets/solutions/stat.png";
 import uplogo from "../../assets/solutions/uplogo.png";
+import { useTranslation } from "react-i18next";
+
 import Slider from "react-slick";
 function Solutions() {
+    const { t, i18n } = useTranslation();
+
     var settings = {
         dots: false,
         infinite: true,
@@ -54,28 +58,28 @@ function Solutions() {
     };
     const data = [
         {
-            title: "Enerjy Etüd",
+            title: t("sol1"),
             img: rev,
         },
         {
-            title: "Enerji Verimliliği ve Yenilenebilir Enerji Danışmanlığı",
+            title: t("sol2"),
             img: stat,
         },
 
         {
-            title: "Proje Uygulama",
+            title: t("sol3"),
             img: proje,
         },
         {
-            title: "Verimlilik Artırıcı Proje (VAP) Danışmanlığı",
+            title: t("sol4"),
             img: uplogo,
         },
         {
-            title: "Sürdürülebilirlik ve Enerji Yönetimi",
+            title: t("sol5"),
             img: bitki,
         },
         {
-            title: "Enerji İzleme Yönetimi",
+            title: t("sol6"),
             img: energy,
         },
         {
@@ -83,12 +87,12 @@ function Solutions() {
             img: iso,
         },
         {
-            title: "Elektrikli Şarj Çözümleri",
+            title: t("sol7"),
             img: car,
         },
     ];
     const [isVisible, setIsVisible] = useState(false);
-    const aboutRef = useRef(null);
+    const solutionRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -98,11 +102,11 @@ function Solutions() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.5 } // Elementin yarıdan fazlası göründüğünde
+            { threshold: 0 } // Elementin yarıdan fazlası göründüğünde
         );
 
-        if (aboutRef.current) {
-            observer.observe(aboutRef.current);
+        if (solutionRef.current) {
+            observer.observe(solutionRef.current);
         }
 
         return () => {
@@ -115,7 +119,7 @@ function Solutions() {
         <div
             id="solutions"
             className="container mx-auto mt-28 max-lg:px-4"
-            ref={aboutRef}
+            ref={solutionRef}
         >
             <motion.div
                 initial={{ opacity: 0, x: -100 }}
@@ -126,7 +130,7 @@ function Solutions() {
                 transition={{ duration: 1 }}
             >
                 <p className="text-5xl text-[#0c8ecf] font-bold varela-round-bold">
-                    Çözümler
+                    {t("navsolution")}
                 </p>
             </motion.div>
 
