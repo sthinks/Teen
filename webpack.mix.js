@@ -1,4 +1,4 @@
-const mix = require('laravel-mix')
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,20 +11,17 @@ const mix = require('laravel-mix')
  |
  */
 
-mix
-  .webpackConfig({
+mix.webpackConfig({
     resolve: {
-      extensions: ['.js', '.vue'],
-      alias: {
-        '@': __dirname + 'resources',
-      },
+        extensions: [".js", ".vue"],
+        alias: {
+            "@": __dirname + "resources",
+        },
     },
     output: {
-      chunkFilename: 'js/chunks/[name].js',
+        chunkFilename: "js/chunks/[name].js",
     },
-  })
-  .react()
+}).react();
 
-
-mix.js('resources/react-app/src/index.js', 'public/js/app.js').version()
-mix.copy('resources/react-app/public', 'public')
+mix.js("resources/react-app/src/index.js", "public/js/app.js").version();
+mix.copy("resources/react-app/public", "public");

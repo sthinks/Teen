@@ -1,3 +1,151 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+.text-with-underline {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+.hamburger-menu {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.line {
+    background-color: #000;
+    height: 2px;
+    margin: 2px;
+    width: 100%;
+}
+.open .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    background: black;
+}
+
+.open .line:nth-child(2) {
+    opacity: 0;
+    background: black;
+}
+
+.open .line:nth-child(3) {
+    transform: rotate(-45deg) translate(3px, -4px);
+    background-color: black;
+}
+.navbar-open-close {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.863);
+    top: 4rem;
+}
+
+.text-with-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Alt çizgi ile metin arasındaki boşluk */
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.text-with-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.ovalAlt {
+    border-bottom-left-radius: 100% 30%;
+    border-bottom-right-radius: 100% 30%;
+    overflow: hidden;
+}
+.varela-round-med {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.varela-round-reguler {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.varela-round-bold {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.text-with-underline2 {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.text-with-underline2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Alt çizgi ile metin arasındaki boşluk */
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.text-with-underline:hover2::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*TimeLine*/
+.vertical-timeline-element-icon {
+    height: 100% !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+}
+.vertical-timeline-element {
+    margin: 0px !important;
+    height: 240px !important;
+}
+.vertical-timeline-element-content {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .vertical-timeline-element {
+        height: auto !important;
+    }
+}
+
+.slick-arrow {
+    display: none !important;
+}
